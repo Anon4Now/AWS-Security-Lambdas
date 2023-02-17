@@ -4,7 +4,7 @@ The code in the individual directories are geared towards specific needs from a 
 
 AWS has numerous controls that it needs to follow to be compliant with any number of compliance frameworks (NIST, CIS, ISO, etc..), these Lambda's will help enforce that compliance by automating remediation actions that tend to frequently crop up.
 
-The Lambda's created thusfar are as follows:
+The Lambda's created thus far are as follows:
 
 - Enable yearly rotation on Customer Managed Keys (CMKs)
 - Enable Object Versioning for S3 Buckets
