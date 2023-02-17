@@ -22,5 +22,6 @@ The Lambda's created thus far are as follows:
 - This code can be altered to be used in a multi-account environment, or be used as part of a pipeline deployment
 - This code contains tests associated with its base functionality, and these tests DO NOT interact with AWS because of mocks
 - There will be Terraform configuration files that will create basic infrastucture to prove out each Lambda's functionality (don't forget to delete after tests)
+- More data on functionality for the Lambda is available in README files for each directory
 
 
