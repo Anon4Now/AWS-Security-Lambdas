@@ -1,6 +1,6 @@
 # AWS Lambda Code for Security Functions
 
-The code in the induvidual directories is geared towards a specific need from a security perspective in AWS. It has been written in both Python and Go, depending on the use cases and comfortability of implementation.
+The code in the individual directories are geared towards specific needs from a security perspective in AWS. It has been written in both Python and Go, depending on the use cases and comfortability of implementation.
 
 AWS has numerous controls that it needs to follow to be compliant with any number of compliance frameworks (NIST, CIS, ISO, etc..), these Lambda's will help enforce that compliance by automating remediation actions that tend to frequently crop up.
 
