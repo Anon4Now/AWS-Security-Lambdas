@@ -15,7 +15,7 @@ The Lambda's created thus far are as follows:
 - Will use Boto3 or Go SDK to programmtically interact with AWS
 - Can be run from inside a Docker container or uploaded via zip file
 - Will require appropriate permissions for Lambda execution role to perform tasks successfully
-- ###IMPORTANT These Lambda's are geared towards a single account deployment strategy, if a centralized approach is needed the code will need some changes
+- **IMPORTANT** These Lambda's are geared towards a single account deployment strategy, if a centralized approach is needed the code will need some changes
 
 ## Quick Notes:
 
