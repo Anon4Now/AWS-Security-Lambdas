@@ -19,7 +19,7 @@ The Go code in this directory is designed to be used with AWS Lambda. It will lo
 - This code can be altered to be used in a multi-account environment, or be used as part of a pipeline deployment
 - This code contains unit tests associated with its base functionality, and these tests DO NOT interact with AWS because of mocks
 - There are Terraform configuration files that will create basic infrastucture to prove out each Lambda's functionality (don't forget to delete after tests)
-- To use the Terraform configuration files as is, the Python code will need to be converted to a zip file and dropped in the terraform_tests directory
+- To use the Terraform configuration files as is, the Go code will need to be converted to a zip file and dropped in the terraform_tests directory
 
 ### Linux Example (compile binary and convert to zip):
 ```
