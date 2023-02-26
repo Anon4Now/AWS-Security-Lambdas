@@ -21,12 +21,8 @@ The Go code in this directory is designed to be used with AWS Lambda. It will lo
 - There are Terraform configuration files that will create basic infrastucture to prove out each Lambda's functionality (don't forget to delete after tests)
 - To use the Terraform configuration files as is, the Python code will need to be converted to a zip file and dropped in the terraform_tests directory
 
-### Windows Example (PowerShell):
+### Linux Example (compile binary and convert to zip):
 ```
-$compress = @{
-Path = ".\file1.py", ".\file2.py"
-DestinationPath = ".\app.zip"
-}
-
-Compress-Archive @compress
+env GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o ./dist/main ./cmd/main.go
+cd ./dist/ && zip main.zip main && cd ..
 ```
