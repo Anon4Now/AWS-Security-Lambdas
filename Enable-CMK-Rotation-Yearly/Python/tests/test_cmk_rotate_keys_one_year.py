@@ -63,7 +63,7 @@ class TestCmkRotation(unittest.TestCase):
         with self.assertLogs() as captured:
             self.kms_obj_alt = KMSKey(self.kms_client, '111111111111')
             self.kms_obj_alt.dispatch()
-            self.assertIn("No KMS key(s) found with rotation disabled, no action taken.", captured.output[0])
+            self.assertIn("No KMS key(s) found with rotation disabled, no action taken", captured.output[0])
 
     @patch('cmk_rotate_keys_one_year.get_account_id')
     @patch('cmk_rotate_keys_one_year.create_boto3')
