@@ -1,6 +1,6 @@
 # AWS Lambda Code for Rotating CMK's
 
-The Python code in this directory can be used for an AWS Lambda to look for all KMS keys in an account/region, determine which are customer-managed, and then set yearly rotation on those keys. The practice of rotating CMK's at least yearly, follows best-practice for a number of compliance frameworks. Below is a basic listing of some frameworks that this control implements:
+The Python code in this directory is designed to be used with AWS Lambda. It will look for all KMS keys in an account/region, determine which are customer-managed, and then set yearly rotation on any CMK's that do not have it. The practice of rotating CMK's at least yearly, follows best-practice for a number of compliance frameworks. Below is a basic listing of some frameworks that this control implements:
 
 ADD STUFF HERE
 
