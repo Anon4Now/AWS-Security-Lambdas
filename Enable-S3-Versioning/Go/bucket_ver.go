@@ -11,7 +11,7 @@ import (
 
 
 type Bucket struct {
-	Client *s3.Client
+	Client S3ActionsApi
 	BucketList []string
 }
 
