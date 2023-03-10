@@ -2,28 +2,32 @@ package main
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
 )
 
-var client *s3.Client
-
-func init() {
-	// initalizer func that will create
-	// the usable s3control client
-
-	cfg, err := config.LoadDefaultConfig(context.TODO())
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	client = s3.NewFromConfig(cfg)
+// interface that implements all of the AWS API calls needed
+// provides the ability for mocks during testing
+//go:generate moq -out s3_moq_test.go . S3ActionsAPI
+type S3ActionsApi interface {
+	ListBuckets(ctx context.Context, params *s3.ListBucketsInput, optFns ...func(*s3.Options)) (*s3.ListBucketsOutput, error)
+	PutBucketVersioning(ctx context.Context, params *s3.PutBucketVersioningInput, optFns ...func(*s3.Options)) (*s3.PutBucketVersioningOutput, error)
+	GetBucketVersioning(ctx context.Context, params *s3.GetBucketVersioningInput, optFns ...func(*s3.Options)) (*s3.GetBucketVersioningOutput, error)
 }
 
+
 func HandleRequest(ctx context.Context) {
+
+	// load the S3 client
+	cfg, err := config.LoadDefaultConfig(context.TODO())
+	if err != nil {
+        panic("unable to load SDK config, " + err.Error())
+	}
+
+	client := s3.NewFromConfig(cfg)
+
 	b := Bucket{Client: client,}
 	b.Dispatch()
 }
