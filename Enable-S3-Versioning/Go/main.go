@@ -10,7 +10,7 @@ import (
 
 // interface that implements all of the AWS API calls needed
 // provides the ability for mocks during testing
-//go:generate moq -out s3_moq_test.go . S3ActionsAPI
+//go:generate moq -out s3_moq_test.go . S3ActionsApi
 type S3ActionsApi interface {
 	ListBuckets(ctx context.Context, params *s3.ListBucketsInput, optFns ...func(*s3.Options)) (*s3.ListBucketsOutput, error)
 	PutBucketVersioning(ctx context.Context, params *s3.PutBucketVersioningInput, optFns ...func(*s3.Options)) (*s3.PutBucketVersioningOutput, error)
