@@ -1,0 +1,20 @@
+{
+  "Buckets": [
+    {
+      "Name": "bucket1",
+      "CreationDate": "1624646161.0"
+    },
+    {
+      "Name": "bucket2",
+      "CreationDate": "1624646165.0"
+    },
+    {
+      "Name": "bucket3",
+      "CreationDate": "1624646168.0"
+    }
+  ],
+  "Owner": {
+    "DisplayName": "string",
+    "ID": "string"
+  }
+}
