@@ -29,9 +29,9 @@ class TestS3EnableVersioning(unittest.TestCase):
         self.s3_client = boto3.client('s3', 'us-east-1')
         self.sts_client = boto3.client('sts', 'us-east-1')
 
-        self.s3_client.create_bucket(Bucket='bucket1', CreateBucketConfiguration={'LocationConstraint': 'us-east-1'})
-        self.s3_client.create_bucket(Bucket='bucket2', CreateBucketConfiguration={'LocationConstraint': 'us-east-1'})
-        self.s3_client.create_bucket(Bucket='bucket3', CreateBucketConfiguration={'LocationConstraint': 'us-east-1'})
+        self.s3_client.create_bucket(Bucket='bucket1')
+        self.s3_client.create_bucket(Bucket='bucket2')
+        self.s3_client.create_bucket(Bucket='bucket3')
 
     def test_get_bucket_list(self):
         """Tests to see if a list containing buckets is returned."""
@@ -56,12 +56,7 @@ class TestS3EnableVersioning(unittest.TestCase):
 
         # this will test that all buckets are in a disabled state
         self.s3_obj = BucketVersion(self.s3_client, '1111111111111')
-        self.s3_obj._check_bucket_version()
-        self.assertEqual(self.s3_obj._bucket_status_dict,
-                         {'disabled0': 'bucket1', 'disabled1': 'bucket2', 'disabled3': 'bucket3'})
-
-        # this will test if some bucket(s) are in a suspended state
-        self.s3_obj = BucketVersion(self.s3_client, '111111111111')
+        self._test_check_bucket_version_dict_creation('disabled0')
         self.s3_client.put_bucket_versioning(
             Bucket='bucket1',
             VersioningConfiguration={
@@ -70,12 +65,7 @@ class TestS3EnableVersioning(unittest.TestCase):
             }
         )
 
-        self.s3_obj._check_bucket_version()
-        self.assertEqual(self.s3_obj._bucket_status_dict,
-                         {'suspended0': 'bucket1', 'disabled1': 'bucket2', 'disabled2': 'bucket3'})
-
-        # this will test if all the bucket(s) are in an enabled state
-        self.s3_obj = BucketVersion(self.s3_client, '111111111111')
+        self._test_check_bucket_version_dict_creation('suspended0')
         for bucket in self.s3_obj._bucket_list:
             self.s3_client.put_bucket_versioning(
                 Bucket=bucket,
@@ -86,6 +76,16 @@ class TestS3EnableVersioning(unittest.TestCase):
             )
         self.s3_obj._check_bucket_version()
         self.assertEqual(self.s3_obj._bucket_status_dict, {})
+
+    def _test_check_bucket_version_dict_creation(self, arg0):
+        self.s3_obj._check_bucket_version()
+        self.assertEqual(
+            self.s3_obj._bucket_status_dict,
+            {arg0: 'bucket1', 'disabled1': 'bucket2', 'disabled2': 'bucket3'},
+        )
+
+        # this will test if some bucket(s) are in a suspended state
+        self.s3_obj = BucketVersion(self.s3_client, '111111111111')
 
     def test_remove_item_from_dict(self):
         """Tests to see if an item is removed from a dictionary."""
@@ -108,7 +108,7 @@ class TestS3EnableVersioning(unittest.TestCase):
             self.s3_client.delete_bucket(Bucket=bucket)
         self.assertEqual(self.s3_obj.dispatch(), {'error': -1})
 
-    @patch('s3_enable_versioning_on_buckets.get_acount_id')
+    @patch('s3_enable_versioning_on_buckets.get_account_id')
     @patch('s3_enable_versioning_on_buckets.create_boto3')
     def test_lambda_handler(self, mock_create_boto3, mock_get_account_id):
         """Tests the lambda handler code."""
