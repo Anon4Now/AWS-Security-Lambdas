@@ -8,7 +8,7 @@ variable "lambda_role_arn" {
 
 resource "aws_lambda_function" "s3_blocking_lambda" {
   function_name = var.lambda_func_name
-  filename = "C:\\go_projects\\block-s3-public-account-access\\main.zip"
+  filename = "PATH_TO_ZIP\main.zip"
   role = var.lambda_role_arn
   handler = "main"
   runtime = "go1.x"
