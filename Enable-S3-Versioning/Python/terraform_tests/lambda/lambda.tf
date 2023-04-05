@@ -10,7 +10,7 @@ resource "aws_lambda_function" "versioning_lambda" {
   function_name = var.lambda_func_name
   filename = "./main.zip"
   role = var.lambda_role_arn
-  handler = "s3_enable_versioning_on_buckets"
+  handler = "s3_enable_versioning_on_buckets.lambda_handler"
   runtime = "python3.9"
 
 }
