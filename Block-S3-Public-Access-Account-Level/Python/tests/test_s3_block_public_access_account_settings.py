@@ -40,7 +40,7 @@ class TestS3BlockPublicAccess(unittest.TestCase):
         account_id = self.sts.get_caller_identity()['Account']
 
         # check that is the 'NoSuchPublicAccessBlockConfiguration' ClientError appears the below dict is returned
-        self.assertEqual(_get_public_access_block_settings(self.s3control, account_id), {'error', -1})
+        self.assertEqual(_get_public_access_block_settings(self.s3control, account_id), {'error': -1})
 
         # check that is ANY ClientError other than 'NoSuchPublicAccessBlockConfiguration' it is raised
         with self.assertRaises(ClientError):
