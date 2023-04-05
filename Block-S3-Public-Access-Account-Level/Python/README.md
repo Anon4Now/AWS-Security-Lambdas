@@ -1,4 +1,4 @@
-# AWS Lambda Code for Rotating CMK's
+# AWS Lambda Code for Blocking S3 Public Access
 
 The Python code in this directory is designed to be used with AWS Lambda. It will look to see is the S3 account level public access block is set and enable it if it is not. The practice of blocking S3 public access, follows best-practice for a number of compliance frameworks. Below is a basic listing of some frameworks that this control implements:
 
