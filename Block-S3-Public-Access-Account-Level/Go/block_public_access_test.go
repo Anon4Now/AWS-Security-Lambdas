@@ -40,7 +40,7 @@ func TestPutPublicAccessBlock(t *testing.T) {
 
 		},
 	}
-	resp := putPublicAccessBlock(mockedS3ControlActionsAPI)
+	resp := putPublicAccessBlock(mockedS3ControlActionsAPI, "123456789")
 	assert.Equal(t, true, resp)
 }
 
@@ -65,7 +65,7 @@ func TestGetPublicAccessBlockOpen(t *testing.T) {
 		},
 	}
 
-	resp := getPublicAccessBlock(mockedS3ControlActionsAPI)
+	resp := getPublicAccessBlock(mockedS3ControlActionsAPI, "123456789")
 	assert.Equal(t, false, resp)
 }
 
@@ -89,6 +89,6 @@ func TestGetPublicAccessBlockClosed(t *testing.T) {
 		},
 	}
 
-	resp := getPublicAccessBlock(mockedS3ControlActionsAPI)
+	resp := getPublicAccessBlock(mockedS3ControlActionsAPI, "123546879")
 	assert.Equal(t, true, resp)
 }
